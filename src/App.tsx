@@ -1,3 +1,10 @@
+// Local Dependencies
+import Dashboard from 'src/features/Dashboard';
+
 export const App = () => {
-  return <div className="bg-red-500">App</div>;
+  return (
+    <div className="bg-white dark:bg-gray-800">
+      <Dashboard />
+    </div>
+  );
 };
