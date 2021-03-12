@@ -1,7 +1,10 @@
 import { GoogleAuthButtonProps } from './types';
 
-const GoogleAuthButton = (props: GoogleAuthButtonProps) => {
-  const { children, fullWidth = false } = props;
+const GoogleAuthButton = ({
+  fullWidth = false,
+  ...props
+}: GoogleAuthButtonProps) => {
+  const { children } = props;
   return (
     <button
       {...props}
