@@ -17,7 +17,7 @@ module.exports = {
   ],
   optimize: {
     /* Example: Bundle your final build: */
-    // "bundle": true,
+    bundle: true,
   },
   packageOptions: {
     knownEntrypoints: ['react/jsx-runtime'],

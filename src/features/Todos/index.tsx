@@ -20,11 +20,9 @@ const Todos = () => {
       createdDate: new Date().toISOString(),
       updatedDate: new Date().toISOString(),
     };
-    console.log('createdTodo :>> ', createdTodo);
     setTodoList([...todoList, createdTodo]);
     // Reset form state
     setTodo(initialTodoValue);
-    console.log('todo :>> ', todo);
   };
 
   return (

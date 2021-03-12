@@ -1,10 +1,10 @@
 // Local Dependencies
-import Dashboard from 'src/features/Dashboard';
+import { AppRouter } from './router';
 
 export const App = () => {
   return (
     <div className="bg-white dark:bg-gray-800">
-      <Dashboard />
+      <AppRouter />
     </div>
   );
 };
