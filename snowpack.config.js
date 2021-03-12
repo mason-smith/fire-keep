@@ -19,7 +19,7 @@ module.exports = {
     // "bundle": true,
   },
   packageOptions: {
-    /* ... */
+    knownEntrypoints: ['react/jsx-runtime'],
   },
   devOptions: {
     /* ... */
