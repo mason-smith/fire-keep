@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "fire-keep"
+    "default": "keep.client"
   }
 }
