@@ -6,8 +6,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { EuiButton, EuiFieldText, EuiFieldPassword } from '@elastic/eui';
 
 // Local Dependencies
-import GoogleAuthButton from 'src/components/GoogleAuthButton';
-import TextField from 'src/components/TextField';
 import { firebaseAuth, signInWithGoogle } from 'src/config/firebase.config';
 import { UseAuthStateReturn } from 'src/config/firebaseTypes';
 import { AuthError } from './types';
