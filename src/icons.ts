@@ -2,6 +2,8 @@ import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
 
 import { icon as AppDashboadIcon } from '@elastic/eui/es/components/icon/assets/app_dashboard';
 import { icon as AppLens } from '@elastic/eui/es/components/icon/assets/app_lens';
+import { icon as ArrowUp } from '@elastic/eui/es/components/icon/assets/arrow_up';
+import { icon as Apps } from '@elastic/eui/es/components/icon/assets/apps';
 import { icon as ArrowRight } from '@elastic/eui/es/components/icon/assets/arrow_right';
 import { icon as CheerIcon } from '@elastic/eui/es/components/icon/assets/cheer';
 import { icon as CrossIcon } from '@elastic/eui/es/components/icon/assets/cross';
@@ -20,11 +22,11 @@ import { icon as Menu } from '@elastic/eui/es/components/icon/assets/menu';
 import { icon as Search } from '@elastic/eui/es/components/icon/assets/search';
 import { icon as Training } from '@elastic/eui/es/components/icon/assets/training';
 import { icon as UserIcon } from '@elastic/eui/es/components/icon/assets/user';
-import { icon as ArrowUp } from '@elastic/eui/es/components/icon/assets/arrow_up';
 
 export const iconComponentCache = () =>
   appendIconComponentCache({
     dashboardApp: AppDashboadIcon,
+    apps: Apps,
     lensApp: AppLens,
     arrowRight: ArrowRight,
     arrowUp: ArrowUp,

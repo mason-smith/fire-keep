@@ -5,7 +5,6 @@ import { FormEvent, useState } from 'react';
 import { EuiButton, EuiFieldText } from '@elastic/eui';
 
 // Local Dependencies
-import Button from 'src/components/Button';
 import { Todo } from '../Dashboard/types';
 
 const initialTodoValue = { title: '', details: '' };

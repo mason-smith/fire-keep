@@ -59,6 +59,7 @@ declare module '*.png' {
 /* CUSTOM: ADD YOUR OWN HERE */
 declare module '@elastic/eui/es/components/icon/icon';
 
+declare module '@elastic/eui/es/components/icon/assets/apps';
 declare module '@elastic/eui/es/components/icon/assets/app_lens';
 declare module '@elastic/eui/es/components/icon/assets/app_dashboard';
 declare module '@elastic/eui/es/components/icon/assets/arrow_right';
