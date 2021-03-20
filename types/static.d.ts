@@ -57,3 +57,26 @@ declare module '*.png' {
 }
 
 /* CUSTOM: ADD YOUR OWN HERE */
+declare module '@elastic/eui/es/components/icon/icon';
+
+declare module '@elastic/eui/es/components/icon/assets/app_lens';
+declare module '@elastic/eui/es/components/icon/assets/app_dashboard';
+declare module '@elastic/eui/es/components/icon/assets/arrow_right';
+declare module '@elastic/eui/es/components/icon/assets/arrow_up';
+declare module '@elastic/eui/es/components/icon/assets/cross';
+declare module '@elastic/eui/es/components/icon/assets/lockOpen';
+declare module '@elastic/eui/es/components/icon/assets/user';
+declare module '@elastic/eui/es/components/icon/assets/lock';
+declare module '@elastic/eui/es/components/icon/assets/eye';
+declare module '@elastic/eui/es/components/icon/assets/eye_closed';
+declare module '@elastic/eui/es/components/icon/assets/home';
+declare module '@elastic/eui/es/components/icon/assets/logo_azure_mono';
+declare module '@elastic/eui/es/components/icon/assets/logo_aws_mono';
+declare module '@elastic/eui/es/components/icon/assets/logo_kibana';
+declare module '@elastic/eui/es/components/icon/assets/logo_google_g';
+declare module '@elastic/eui/es/components/icon/assets/logo_security';
+declare module '@elastic/eui/es/components/icon/assets/menu';
+declare module '@elastic/eui/es/components/icon/assets/dot';
+declare module '@elastic/eui/es/components/icon/assets/cheer';
+declare module '@elastic/eui/es/components/icon/assets/search';
+declare module '@elastic/eui/es/components/icon/assets/training';

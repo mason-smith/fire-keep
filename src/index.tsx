@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import '@elastic/eui/dist/eui_theme_dark.css';
+
 // Local Dependencies
-import { App } from 'src/App';
 import 'src/styles/index.css';
+import { iconComponentCache } from 'src/icons';
+import { App } from 'src/App';
+
+iconComponentCache();
 
 ReactDOM.render(
   <React.StrictMode>
