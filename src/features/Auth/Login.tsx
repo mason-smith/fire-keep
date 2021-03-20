@@ -72,7 +72,6 @@ const LoginPage = () => {
               aria-label="Email Address"
               fullWidth
               icon="user"
-              className="text-white"
             />
           </div>
           <div className="mt-4">
