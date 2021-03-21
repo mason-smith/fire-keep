@@ -2,10 +2,10 @@ import { FormEvent, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+// @elastic/eui dependencies
+import { EuiButton, EuiFieldText, EuiFieldPassword } from '@elastic/eui';
+
 // Local Dependencies
-import GoogleAuthButton from 'src/components/GoogleAuthButton';
-import TextField from 'src/components/TextField';
-import Button from 'src/components/Button';
 import { firebaseAuth, signInWithGoogle } from 'src/config/firebase.config';
 import { UseAuthStateReturn } from 'src/config/firebaseTypes';
 import { AuthError } from './types';
@@ -43,14 +43,17 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="flex mx-auto h-screen justify-center items-center overflow-hidden lg:max-w-3xl">
+    <main className="flex mx-auto h-screen justify-center items-center overflow-hidden lg:max-w-xl">
       <div className="w-full px-6 py-8 md:px-8">
-        <h1 className="text-2xl font-semibold text-center text-gray-700 dark:text-white">
-          Welcome.
-        </h1>
-        <GoogleAuthButton onClick={() => signInWithGoogle()} fullWidth>
+        <h1 className="text-2xl font-semibold text-center">Welcome.</h1>
+        <EuiButton
+          onClick={signInWithGoogle}
+          iconType="logoGoogleG"
+          fullWidth
+          className="mt-2"
+        >
           Sign in with Google
-        </GoogleAuthButton>
+        </EuiButton>
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
           <span className="text-xs text-center text-gray-500 uppercase dark:text-gray-400">
@@ -60,29 +63,35 @@ const LoginPage = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mt-4">
-            <TextField
+            <EuiFieldText
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
-              id="loggingEmailAddress"
-              label="Email Address"
+              placeholder="Email Address"
               type="email"
+              id="loggingEmailAddress"
+              aria-label="Email Address"
+              fullWidth
+              icon="user"
             />
           </div>
           <div className="mt-4">
-            <TextField
+            <EuiFieldPassword
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              type="dual"
               id="loggingPassword"
-              label="Password"
-              type="password"
+              aria-label="Password"
+              fullWidth
             />
           </div>
           <div className="mt-8">
-            <Button
+            <EuiButton
               disabled={isLoading || firebaseIsLoading}
               fullWidth
               type="submit"
             >
               Login
-            </Button>
+            </EuiButton>
             {error ? (
               <>
                 <p className="text-red-500">{error?.message}</p>

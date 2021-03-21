@@ -14,7 +14,12 @@ export const AppRouter = () => {
   const [user]: UseAuthStateReturn = useAuthState(firebaseAuth);
   return (
     <Router>
-      {user ? <Navigation /> : null}
+      {user ? (
+        <>
+          <Navigation />
+          <div className="mb-10" />
+        </>
+      ) : null}
 
       <Switch>
         <Suspense fallback={null}>

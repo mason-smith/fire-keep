@@ -1,9 +1,10 @@
 import cuid from 'cuid';
-import { FormEvent, Fragment, useState } from 'react';
+import { FormEvent, useState } from 'react';
+
+// @elastic/eui dependencies
+import { EuiButton, EuiFieldText } from '@elastic/eui';
 
 // Local Dependencies
-import Button from 'src/components/Button';
-import TextField from 'src/components/TextField';
 import { Todo } from '../Dashboard/types';
 
 const initialTodoValue = { title: '', details: '' };
@@ -28,21 +29,30 @@ const Todos = () => {
   return (
     <>
       <form onSubmit={handleSubmit} className="w-full md:w-2/3 lg:w-1/3 mb-4">
-        <TextField
-          label="Todo Title"
+        <EuiFieldText
           value={todo.title}
           onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+          placeholder="Todo Title"
+          type="text"
+          id="todoTitleInput"
+          aria-label="Todo Title"
+          fullWidth
         />
         <div className="my-2" />
-        <TextField
-          label="Todo Details"
+        <EuiFieldText
           value={todo.details}
           onChange={(e) => setTodo({ ...todo, details: e.target.value })}
+          placeholder="Todo Details"
+          type="text"
+          id="todoDetailsInput"
+          aria-label="Todo Details"
+          fullWidth
         />
-        <div className="my-4" />
-        <Button type="submit" fullWidth>
+
+        <div className="my-2" />
+        <EuiButton type="submit" fullWidth>
           Create Todo
-        </Button>
+        </EuiButton>
       </form>
       <section className="w-full">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
