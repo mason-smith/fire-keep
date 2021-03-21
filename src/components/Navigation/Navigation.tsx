@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // @elastic/eui dependencies
 import {
-  EuiAvatar,
-  EuiBadge,
-  EuiButton,
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
   EuiFlexItem,
   EuiFlyout,
   EuiFlyoutBody,
   EuiFlyoutHeader,
-  EuiFocusTrap,
   EuiHeader,
   EuiHeaderLink,
   EuiHeaderLinks,
@@ -21,19 +17,17 @@ import {
   EuiIcon,
   EuiListGroupItem,
   EuiPage,
-  EuiPopover,
   EuiPortal,
   EuiShowFor,
   EuiText,
   EuiTitle,
-  EuiSelectableTemplateSitewide,
-  EuiSelectableMessage,
   EuiFlexGroup,
 } from '@elastic/eui';
 
 // Local Dependencies
 import { Search } from './Search';
 import { UserMenu } from './UserMenu';
+import { routes } from 'src/router/routes';
 
 const Navigation = () => {
   /**
@@ -167,8 +161,21 @@ const Navigation = () => {
                   repositionOnScroll: true, // Necessary when placing search in a fixed component
                 }}
               >
-                <EuiHeaderLink color="primary">Share</EuiHeaderLink>
-                <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
+                {routes
+                  .filter((route) => {
+                    return route.private;
+                  })
+                  .map((route) => {
+                    return (
+                      <Link to={route.path}>
+                        <EuiHeaderLink color="primary">
+                          {route.label}
+                        </EuiHeaderLink>
+                      </Link>
+                    );
+                  })}
+                {/* <EuiHeaderLink color="primary">Share</EuiHeaderLink>
+                <EuiHeaderLink color="primary">Clone</EuiHeaderLink> */}
               </EuiHeaderLinks>,
               <EuiHeaderSectionItemButton
                 notification={true}
