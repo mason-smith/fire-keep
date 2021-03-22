@@ -1,6 +1,6 @@
 // Local Dependencies
 import Container from 'src/components/Container';
-import Todos from 'src/features/Todos';
+import Todos from 'src/features/Tasks';
 
 const Dashboard = () => {
   return (

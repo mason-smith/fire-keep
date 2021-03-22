@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import cuid from 'cuid';
 
 // @elastic/eui dependencies
 import {
@@ -25,9 +26,10 @@ import {
 } from '@elastic/eui';
 
 // Local Dependencies
-import { Search } from './Search';
-import { UserMenu } from './UserMenu';
 import { routes } from 'src/router/routes';
+import { UserMenu } from './UserMenu';
+import { Search } from './Search';
+import { firebaseAuth } from 'src/config/firebase.config';
 
 const Navigation = () => {
   /**
@@ -161,19 +163,28 @@ const Navigation = () => {
                   repositionOnScroll: true, // Necessary when placing search in a fixed component
                 }}
               >
-                {routes
-                  .filter((route) => {
-                    return route.private;
-                  })
-                  .map((route) => {
-                    return (
-                      <Link to={route.path}>
-                        <EuiHeaderLink color="primary">
-                          {route.label}
-                        </EuiHeaderLink>
-                      </Link>
-                    );
-                  })}
+                {[
+                  ...routes
+                    .filter((route) => {
+                      return route.private;
+                    })
+                    .map((route) => {
+                      return (
+                        <Link to={route.path} key={cuid()}>
+                          <EuiHeaderLink color="primary">
+                            {route.label}
+                          </EuiHeaderLink>
+                        </Link>
+                      );
+                    }),
+                  <EuiHeaderLink
+                    key={cuid()}
+                    color="primary"
+                    onClick={() => firebaseAuth.signOut()}
+                  >
+                    Log out
+                  </EuiHeaderLink>,
+                ]}
                 {/* <EuiHeaderLink color="primary">Share</EuiHeaderLink>
                 <EuiHeaderLink color="primary">Clone</EuiHeaderLink> */}
               </EuiHeaderLinks>,

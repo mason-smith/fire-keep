@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import '@elastic/eui/dist/eui_theme_dark.css';
 
@@ -7,12 +8,15 @@ import '@elastic/eui/dist/eui_theme_dark.css';
 import 'src/styles/index.css';
 import { iconComponentCache } from 'src/icons';
 import { App } from 'src/App';
+import { store } from 'src/config/store';
 
 iconComponentCache();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
