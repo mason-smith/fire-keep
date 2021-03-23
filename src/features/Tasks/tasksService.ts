@@ -17,18 +17,12 @@ export const tasksApi = createApi({
       { limit: number; offset: number; authorId: string }
     >({
       query: ({ limit = 10, offset = 0, authorId = '' }) => {
-        console.log(`fetchTasksForUser authorId`, authorId);
         return {
           url: `/`,
           // body: { authorId },
           params: { limit, offset, authorId },
         };
       },
-      // ({
-      // url: `/`,
-      // body: authorId,
-      // params: { limit, offset },
-      // }),
       provides: (result) => [
         ...result.results.map(({ id }) => ({ type: 'Task', id } as const)),
         { type: 'Task', id: 'LIST' },
@@ -38,7 +32,7 @@ export const tasksApi = createApi({
      * Fetch single task by id
      */
     fetchTask: builder.query({
-      query: (id: string) => `/${id}`,
+      query: ({ taskId }: { taskId: string }) => `/${taskId}`,
     }),
     /**
      * Create new task

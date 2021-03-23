@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // @elastic/eui dependencies
 import {
@@ -8,8 +9,13 @@ import {
   EuiText,
 } from '@elastic/eui';
 
+// Local Dependencies
+import { firebaseAuth } from 'src/config/firebase.config';
+
 export const UserMenu = () => {
+  const [user] = useAuthState(firebaseAuth);
   const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
+
   return (
     <EuiPopover
       id="guideHeaderUserMenuExample"
@@ -22,7 +28,7 @@ export const UserMenu = () => {
           aria-label="User menu"
           onClick={() => setIsUserMenuVisible(!isUserMenuVisible)}
         >
-          <EuiAvatar name="John Username" size="s" />
+          <EuiAvatar name={user?.displayName || 'U'} size="s" />
         </EuiHeaderSectionItemButton>
       }
       isOpen={isUserMenuVisible}
@@ -31,10 +37,7 @@ export const UserMenu = () => {
     >
       <div style={{ width: 320 }}>
         <EuiText size="s" color="subdued">
-          <p>
-            Please see the component page for <strong>EuiHeader</strong>
-            on how to configure your user menu.
-          </p>
+          <pre>{JSON.stringify(user?.toJSON(), null, 2)}</pre>
         </EuiText>
       </div>
     </EuiPopover>

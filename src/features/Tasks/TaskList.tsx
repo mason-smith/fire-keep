@@ -34,7 +34,7 @@ export const TaskList = (props: TaskListProps) => {
     <ul>
       {results.map((result) => {
         return (
-          <Link to={`posts/${result.id}`} key={result.id}>
+          <Link to={`tasks/${result.id}`} key={result.id}>
             <li>
               {result.title} - {result.details}{' '}
             </li>

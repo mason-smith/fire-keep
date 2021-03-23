@@ -28,7 +28,6 @@ import {
 // Local Dependencies
 import { routes } from 'src/router/routes';
 import { UserMenu } from './UserMenu';
-import { Search } from './Search';
 import { firebaseAuth } from 'src/config/firebase.config';
 
 const Navigation = () => {
@@ -138,26 +137,16 @@ const Navigation = () => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo iconType="dashboardApp" href="">
-                Keep
-              </EuiHeaderLogo>,
+              <Link to="/">
+                <EuiHeaderLogo iconType="dashboardApp">Keep</EuiHeaderLogo>
+              </Link>,
               collapsibleNav,
             ],
             borders: 'none',
           },
+
           {
             items: [
-              <EuiShowFor sizes={['m', 'l', 'xl']}>
-                <Search />
-              </EuiShowFor>,
-            ],
-            borders: 'none',
-          },
-          {
-            items: [
-              <EuiShowFor sizes={['xs', 's']}>
-                <Search />
-              </EuiShowFor>,
               <EuiHeaderLinks
                 popoverProps={{
                   repositionOnScroll: true, // Necessary when placing search in a fixed component
@@ -166,7 +155,7 @@ const Navigation = () => {
                 {[
                   ...routes
                     .filter((route) => {
-                      return route.private;
+                      return route.navBar;
                     })
                     .map((route) => {
                       return (

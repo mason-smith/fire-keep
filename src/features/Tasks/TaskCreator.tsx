@@ -12,21 +12,13 @@ import { Todo } from '../Dashboard/types';
 
 const initialTodoValue = { title: '', details: '' };
 
-export const TaskCreator = ({ todoList, setTodoList }: any) => {
+export const TaskCreator = () => {
   const [user] = useAuthState(firebaseAuth);
   const [addTask, { isLoading }] = useCreateTaskMutation();
   const [todo, setTodo] = useState<Todo>(initialTodoValue);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const createdTodo = {
-      ...todo,
-      id: cuid(),
-      authorId: user?.uid,
-      createdDate: new Date().toISOString(),
-      updatedDate: new Date().toISOString(),
-    };
-    setTodoList([...todoList, createdTodo]);
     addTask({
       ...todo,
       id: cuid(),
