@@ -3,8 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // Local Dependencies
 import { firebaseAuth } from 'src/config/firebase.config';
 // Components
-import { TaskCreator } from './TaskCreator';
-import { TaskList } from './TaskList';
+import { TaskCreator } from './components/TaskCreator';
+import { TaskList } from './components/TaskList';
 
 const Todos = () => {
   const [user] = useAuthState(firebaseAuth);

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Local Dependencies
-import { useFetchTasksForUserQuery } from './tasksService';
-import { TaskListProps } from './types';
+import { useFetchTasksForUserQuery } from '../tasksService';
+import { TaskListProps } from '../types';
 
 export const TaskList = (props: TaskListProps) => {
   const { authorId = '' } = props;

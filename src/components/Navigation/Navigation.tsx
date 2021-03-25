@@ -13,9 +13,8 @@ import {
   EuiHeader,
   EuiHeaderLink,
   EuiHeaderLinks,
-  EuiHeaderLogo,
-  EuiHeaderSectionItemButton,
   EuiIcon,
+  EuiHeaderSectionItemButton,
   EuiListGroupItem,
   EuiPage,
   EuiPortal,
@@ -137,8 +136,9 @@ const Navigation = () => {
         sections={[
           {
             items: [
-              <Link to="/">
-                <EuiHeaderLogo iconType="dashboardApp">Keep</EuiHeaderLogo>
+              <Link to="/" className="text-xl">
+                <EuiIcon className="m-2" type="dashboardApp" size="l" />
+                Keep
               </Link>,
               collapsibleNav,
             ],

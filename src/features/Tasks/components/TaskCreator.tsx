@@ -1,14 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import cuid from 'cuid';
 
 // @elastic/eui dependencies
 import { EuiButton, EuiFieldText } from '@elastic/eui';
 
 // Local Dependencies
 import { firebaseAuth } from 'src/config/firebase.config';
-import { useCreateTaskMutation } from './tasksService';
-import { Task } from '../Dashboard/types';
+import { useCreateTaskMutation } from '../tasksService';
+import { Task } from '../../Dashboard/types';
 
 const initialTaskValue = { title: '', description: '' };
 
@@ -21,7 +20,6 @@ export const TaskCreator = () => {
     e.preventDefault();
     addTask({
       ...task,
-      id: cuid(),
       authorId: user?.uid,
     }).unwrap();
     // Reset form state

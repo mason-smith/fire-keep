@@ -3,8 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // Local Dependencies
 import { firebaseAuth } from 'src/config/firebase.config';
 // Components
-import { TaskCreator } from 'src/features/Tasks/TaskCreator';
-import { TaskList } from 'src/features/Tasks/TaskList';
+import { TaskCreator } from 'src/features/Tasks/components/TaskCreator';
+import { TaskList } from 'src/features/Tasks/components/TaskList';
 
 // Local Dependencies
 import Container from 'src/components/Container';

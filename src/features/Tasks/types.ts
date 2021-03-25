@@ -10,7 +10,6 @@ export type Task = {
   due: string | null;
   dueReminder: boolean | null;
   idCategory: string;
-  idList: string;
   title: string;
 };
 

@@ -31,7 +31,7 @@ export const tasksApi = createApi({
     /**
      * Fetch single task by id
      */
-    fetchTask: builder.query({
+    fetchTask: builder.query<Task, { taskId: string }>({
       query: ({ taskId }: { taskId: string }) => `/${taskId}`,
     }),
     /**
@@ -45,6 +45,14 @@ export const tasksApi = createApi({
       }),
       invalidates: [{ type: 'Task', id: 'LIST' }],
     }),
+    updateTask: builder.mutation<Task, Task>({
+      query: (body) => ({
+        url: `/${body.id}`,
+        method: 'PATCH',
+        body,
+      }),
+      invalidates: [{ type: 'Task', id: 'LIST' }],
+    }),
   }),
 });
 
@@ -54,4 +62,5 @@ export const {
   useFetchTasksForUserQuery,
   useFetchTaskQuery,
   useCreateTaskMutation,
+  useUpdateTaskMutation,
 } = tasksApi;
