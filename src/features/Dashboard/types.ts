@@ -1,7 +1,7 @@
-export type Todo = {
+export type Task = {
   id?: string;
   title: string;
-  details: string;
-  createdDate?: string;
-  updatedDate?: string;
+  description: string;
+  dateCreated?: string;
+  dateUpdated?: string;
 };

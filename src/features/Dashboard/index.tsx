@@ -8,7 +8,6 @@ import { TaskList } from 'src/features/Tasks/TaskList';
 
 // Local Dependencies
 import Container from 'src/components/Container';
-import Todos from 'src/features/Tasks';
 
 const Dashboard = () => {
   const [user] = useAuthState(firebaseAuth);

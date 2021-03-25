@@ -8,52 +8,50 @@ import { EuiButton, EuiFieldText } from '@elastic/eui';
 // Local Dependencies
 import { firebaseAuth } from 'src/config/firebase.config';
 import { useCreateTaskMutation } from './tasksService';
-import { Todo } from '../Dashboard/types';
+import { Task } from '../Dashboard/types';
 
-const initialTodoValue = { title: '', details: '' };
+const initialTaskValue = { title: '', description: '' };
 
 export const TaskCreator = () => {
   const [user] = useAuthState(firebaseAuth);
   const [addTask, { isLoading }] = useCreateTaskMutation();
-  const [todo, setTodo] = useState<Todo>(initialTodoValue);
+  const [task, setTask] = useState<Task>(initialTaskValue);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     addTask({
-      ...todo,
+      ...task,
       id: cuid(),
       authorId: user?.uid,
-      createdDate: new Date().toISOString(),
-      updatedDate: new Date().toISOString(),
     }).unwrap();
     // Reset form state
-    setTodo(initialTodoValue);
+    setTask(initialTaskValue);
   };
   return (
     <form onSubmit={handleSubmit} className="w-full md:w-2/3 lg:w-1/3 mb-4">
       <EuiFieldText
-        value={todo.title}
-        onChange={(e) => setTodo({ ...todo, title: e.target.value })}
-        placeholder="Todo Title"
+        value={task.title}
+        onChange={(e) => setTask({ ...task, title: e.target.value })}
+        placeholder="Task Title"
         type="text"
-        id="todoTitleInput"
-        aria-label="Todo Title"
+        id="taskTitleInput"
+        aria-label="Task Title"
         fullWidth
       />
       <div className="my-2" />
       <EuiFieldText
-        value={todo.details}
-        onChange={(e) => setTodo({ ...todo, details: e.target.value })}
-        placeholder="Todo Details"
+        value={task.description}
+        onChange={(e) => setTask({ ...task, description: e.target.value })}
+        placeholder="Task Details"
         type="text"
-        id="todoDetailsInput"
-        aria-label="Todo Details"
+        id="taskDetailsInput"
+        aria-label="Task Details"
         fullWidth
       />
 
       <div className="my-2" />
       <EuiButton type="submit" fullWidth>
-        Create Todo
+        Create Task
       </EuiButton>
     </form>
   );

@@ -36,7 +36,7 @@ export const TaskList = (props: TaskListProps) => {
         return (
           <Link to={`tasks/${result.id}`} key={result.id}>
             <li>
-              {result.title} - {result.details}{' '}
+              {result.title} - {result.description}{' '}
             </li>
           </Link>
         );
