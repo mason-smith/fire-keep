@@ -11,7 +11,28 @@ import { tasksApi } from 'src/features/Tasks/tasksService';
 
 // Create an array of middlewares
 // @ts-ignore
-const middleware = [...getDefaultMiddleware({})] as const;
+let middleware = [...getDefaultMiddleware({})] as const;
+
+if (import.meta.env.MODE === `development`) {
+  const addLogger = async () => {
+    try {
+      const { logger } = await import('redux-logger');
+
+      // Custom logger configuration
+      // const logger = createLogger({
+      //   collapsed: true,
+      //   duration: true,
+      //   timestamp: false,
+      // });
+
+      // Add the logger to middleware array
+      middleware = [...middleware, logger] as const;
+    } catch (error) {
+      console.log(`error`, error);
+    }
+  };
+  addLogger();
+}
 
 export const store = configureStore({
   reducer: {
