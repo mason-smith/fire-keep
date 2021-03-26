@@ -189,7 +189,7 @@ export const TaskCreator = () => {
               fullWidth
             />
             <EuiSpacer size="m" />
-
+            {/* completed toggle and category select */}
             <EuiFlexGroup alignItems="center">
               <EuiFlexItem>
                 <EuiCheckbox
@@ -213,6 +213,7 @@ export const TaskCreator = () => {
               </EuiFlexItem>
             </EuiFlexGroup>
             <EuiSpacer size="m" />
+            {/* dateStart and dateComplete selects */}
             <EuiFlexGroup alignItems="center">
               <EuiFlexItem>
                 <EuiFormRow label="Select a start date">
@@ -221,6 +222,7 @@ export const TaskCreator = () => {
                     onChange={(date) =>
                       handleChangeDate(date as Moment, 'dateStart')
                     }
+                    maxDate={moment(task.dateComplete)}
                   />
                 </EuiFormRow>
               </EuiFlexItem>
@@ -236,11 +238,37 @@ export const TaskCreator = () => {
                     onChange={(date) =>
                       handleChangeDate(date as Moment, 'dateComplete')
                     }
+                    minDate={moment(task.dateStart)}
                   />
                 </EuiFormRow>
               </EuiFlexItem>
             </EuiFlexGroup>
-
+            <EuiSpacer size="m" />
+            {/* due date and dueReminder selects */}
+            <EuiFlexGroup alignItems="center">
+              <EuiFlexItem>
+                <EuiFormRow label="Select a due date">
+                  <EuiDatePicker
+                    selected={task.due ? moment(task.due) : null}
+                    onChange={(date) => handleChangeDate(date as Moment, 'due')}
+                    showTimeSelect
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiFormRow label="Set a reminder">
+                  <EuiDatePicker
+                    selected={
+                      task.dueReminder ? moment(task.dueReminder) : null
+                    }
+                    onChange={(date) =>
+                      handleChangeDate(date as Moment, 'dueReminder')
+                    }
+                    showTimeSelect
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
             <EuiSpacer />
           </EuiFlyoutBody>
 
