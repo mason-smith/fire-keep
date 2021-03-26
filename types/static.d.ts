@@ -83,6 +83,7 @@ declare module '@elastic/eui/es/components/icon/assets/logo_google_g';
 declare module '@elastic/eui/es/components/icon/assets/logo_security';
 declare module '@elastic/eui/es/components/icon/assets/menu';
 declare module '@elastic/eui/es/components/icon/assets/cheer';
+declare module '@elastic/eui/es/components/icon/assets/save';
 declare module '@elastic/eui/es/components/icon/assets/search';
 declare module '@elastic/eui/es/components/icon/assets/training';
 declare module '@elastic/eui/es/components/icon/assets/trash';

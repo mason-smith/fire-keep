@@ -6,6 +6,7 @@ import moment, { Moment } from 'moment';
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiButtonIcon,
   EuiCheckbox,
   EuiDatePicker,
   EuiFlexGroup,
@@ -15,12 +16,14 @@ import {
   EuiFlyoutFooter,
   EuiFlyoutHeader,
   EuiFormRow,
+  EuiHorizontalRule,
   EuiSpacer,
   EuiText,
   EuiTitle,
   EuiSuperSelect,
-  EuiFieldText,
   EuiTextArea,
+  EuiFieldText,
+  EuiToolTip,
 } from '@elastic/eui';
 
 // Local Dependencies
@@ -83,7 +86,6 @@ export const TaskCreator = () => {
   const [hasFocus, setHasFocus] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
-  const [dateStart, setDateStart] = useState(moment());
 
   const closeFlyout = () => {
     setIsFlyoutVisible(false);
@@ -122,7 +124,6 @@ export const TaskCreator = () => {
   };
 
   const handleChangeDate = (date: Moment, key: string) => {
-    setDateStart(date as Moment);
     setTask({
       ...task,
       [key]: date.toISOString(),
@@ -130,11 +131,8 @@ export const TaskCreator = () => {
     });
   };
 
-  console.log('task :>> ', task);
-
   return (
-    <form onSubmit={handleSubmit} className="w-full md:w-2/3 lg:w-1/3">
-      {/* <EuiButton onClick={showFlyout} onFocus={showFlyout}>Show flyout</EuiButton> */}
+    <form onSubmit={handleSubmit}>
       <EuiFieldText
         value={task.title}
         onChange={(e) => setTask({ ...task, title: e.target.value })}
@@ -152,17 +150,18 @@ export const TaskCreator = () => {
           onClose={closeFlyout}
           hideCloseButton
           aria-labelledby="create-task-flyout-title"
+          size="s"
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
               <h2 id="create-task-flyout-title">Create a new task</h2>
             </EuiTitle>
             <EuiSpacer size="s" />
-            <EuiText color="subdued">
+            <EuiText size="xs" color="subdued">
               <p>
-                To create a task, add either a title or details and click the
-                'Save' button. All other fields are optional and can be filled
-                out at a later time. If ever.
+                To create a task, enter a title and click the 'Save' button. All
+                other fields are optional and can be filled out at a later time.
+                If ever.
               </p>
             </EuiText>
           </EuiFlyoutHeader>
@@ -176,6 +175,7 @@ export const TaskCreator = () => {
               aria-label="Task title"
               fullWidth
               autoFocus={hasFocus || false}
+              required
             />
             <EuiSpacer size="m" />
             <EuiTextArea
@@ -188,7 +188,8 @@ export const TaskCreator = () => {
               aria-label="Task details"
               fullWidth
             />
-            <EuiSpacer size="m" />
+
+            <EuiHorizontalRule />
             {/* completed toggle and category select */}
             <EuiFlexGroup alignItems="center">
               <EuiFlexItem>
@@ -212,82 +213,75 @@ export const TaskCreator = () => {
                 </EuiFormRow>
               </EuiFlexItem>
             </EuiFlexGroup>
-            <EuiSpacer size="m" />
             {/* dateStart and dateComplete selects */}
-            <EuiFlexGroup alignItems="center">
-              <EuiFlexItem>
-                <EuiFormRow label="Select a start date">
-                  <EuiDatePicker
-                    selected={task.dateStart ? moment(task.dateStart) : null}
-                    onChange={(date) =>
-                      handleChangeDate(date as Moment, 'dateStart')
-                    }
-                    maxDate={moment(task.dateComplete)}
-                  />
-                </EuiFormRow>
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <EuiFormRow
-                  label="Select an end date (if the task is complete)"
-                  helpText="To nullify the end date, uncheck the completed checkbox"
-                >
-                  <EuiDatePicker
-                    selected={
-                      task.dateComplete ? moment(task.dateComplete) : null
-                    }
-                    onChange={(date) =>
-                      handleChangeDate(date as Moment, 'dateComplete')
-                    }
-                    minDate={moment(task.dateStart)}
-                  />
-                </EuiFormRow>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <EuiSpacer size="m" />
+            <EuiFormRow label="Select a start date" fullWidth>
+              <EuiDatePicker
+                selected={task.dateStart ? moment(task.dateStart) : null}
+                onChange={(date) =>
+                  handleChangeDate(date as Moment, 'dateStart')
+                }
+                maxDate={moment(task.dateComplete)}
+                fullWidth
+              />
+            </EuiFormRow>
+            <EuiFormRow
+              label="Select an end date (if the task is complete)"
+              helpText="To nullify the end date, uncheck the completed checkbox"
+              fullWidth
+            >
+              <EuiDatePicker
+                selected={task.dateComplete ? moment(task.dateComplete) : null}
+                onChange={(date) =>
+                  handleChangeDate(date as Moment, 'dateComplete')
+                }
+                minDate={moment(task.dateStart)}
+                fullWidth
+              />
+            </EuiFormRow>
             {/* due date and dueReminder selects */}
-            <EuiFlexGroup alignItems="center">
-              <EuiFlexItem>
-                <EuiFormRow label="Select a due date">
-                  <EuiDatePicker
-                    selected={task.due ? moment(task.due) : null}
-                    onChange={(date) => handleChangeDate(date as Moment, 'due')}
-                    showTimeSelect
-                  />
-                </EuiFormRow>
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <EuiFormRow label="Set a reminder">
-                  <EuiDatePicker
-                    selected={
-                      task.dueReminder ? moment(task.dueReminder) : null
-                    }
-                    onChange={(date) =>
-                      handleChangeDate(date as Moment, 'dueReminder')
-                    }
-                    showTimeSelect
-                  />
-                </EuiFormRow>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiFormRow label="Select a due date" fullWidth>
+              <EuiDatePicker
+                selected={task.due ? moment(task.due) : null}
+                onChange={(date) => handleChangeDate(date as Moment, 'due')}
+                showTimeSelect
+                fullWidth
+              />
+            </EuiFormRow>
+            <EuiFormRow label="Set a reminder" fullWidth>
+              <EuiDatePicker
+                selected={task.dueReminder ? moment(task.dueReminder) : null}
+                onChange={(date) =>
+                  handleChangeDate(date as Moment, 'dueReminder')
+                }
+                maxDate={moment(task.due)}
+                showTimeSelect
+                fullWidth
+              />
+            </EuiFormRow>
             <EuiSpacer />
           </EuiFlyoutBody>
 
-          <EuiFlyoutFooter>
-            <EuiFlexGroup justifyContent="spaceBetween">
-              <EuiFlexItem grow={false}>
-                <EuiButtonEmpty
-                  iconType="cross"
-                  onClick={closeFlyout}
-                  flush="left"
-                  type="button"
-                >
-                  Close
-                </EuiButtonEmpty>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiButton type="submit">Save</EuiButton>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+          <EuiFlyoutFooter className="flex items-center justify-between">
+            <EuiButtonEmpty
+              iconType="cross"
+              onClick={closeFlyout}
+              flush="left"
+              type="button"
+              size="s"
+              color="danger"
+            >
+              Close
+            </EuiButtonEmpty>
+
+            <EuiButtonEmpty
+              iconType="save"
+              flush="left"
+              type="submit"
+              size="s"
+              color="success"
+            >
+              Save
+            </EuiButtonEmpty>
           </EuiFlyoutFooter>
         </EuiFlyout>
       )}
