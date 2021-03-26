@@ -119,7 +119,7 @@ export const TaskPage = () => {
           }
         />
         <EuiSpacer size="s" />
-        <EuiButton onClick={() => handleUpdateTask()}>Update task</EuiButton>
+        <EuiButton onClick={() => handleUpdateTask()}>Save task</EuiButton>
         <EuiButton color="danger" onClick={() => handleDeleteTask()}>
           Delete task
         </EuiButton>

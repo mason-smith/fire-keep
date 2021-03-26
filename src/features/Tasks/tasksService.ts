@@ -51,7 +51,10 @@ export const tasksApi = createApi({
         method: 'PATCH',
         body,
       }),
-      invalidates: [{ type: 'Task', id: 'LIST' }],
+      invalidates: (_, body) => [
+        { type: 'Task', id: 'LIST' },
+        { type: 'Task', id: body.id },
+      ],
     }),
     deleteTask: builder.mutation<{ success: boolean; id: string }, string>({
       query(id) {

@@ -28,7 +28,7 @@ export const TaskList = (props: TaskListProps) => {
   const { results, total } = data;
 
   if (!results.length) {
-    return <p>Create your first post</p>;
+    return <p className="col-span-full text-center">Create your first task</p>;
   }
 
   return (
