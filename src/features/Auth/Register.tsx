@@ -24,7 +24,7 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      history.push('/dashboard');
+      history.push('/');
     }
   }, [user]);
 
@@ -36,7 +36,7 @@ const Register = () => {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(email, password);
       setLoading(false);
-      history.push('/dashboard');
+      history.push('/');
     } catch (err) {
       setLoading(false);
       setError(err);
