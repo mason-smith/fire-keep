@@ -45,6 +45,7 @@ export const TaskPage = () => {
     if (data) {
       setTask(data);
     }
+    return () => setTask(null);
   }, [data]);
 
   const handleUpdateTask = async () => {

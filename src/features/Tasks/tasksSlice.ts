@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TasksState, TaskListViewType } from './types';
 
 const initialState: TasksState = {
-  view: 'all',
+  view: 'active',
 };
 
 export const tasksSlice = createSlice({

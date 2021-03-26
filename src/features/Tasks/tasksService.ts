@@ -21,7 +21,7 @@ export const tasksApi = createApi({
         authorId: string;
       }
     >({
-      query: ({ limit = 10, offset = 0, view = 'all', authorId = '' }) => {
+      query: ({ limit = 10, offset = 0, view = 'active', authorId = '' }) => {
         return {
           url: `/`,
           // body: { authorId },
