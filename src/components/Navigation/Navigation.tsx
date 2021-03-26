@@ -29,7 +29,7 @@ import { routes } from 'src/router/routes';
 import { UserMenu } from './UserMenu';
 import { firebaseAuth } from 'src/config/firebase.config';
 
-const Navigation = () => {
+export const Navigation = () => {
   /**
    * Collapsible Nav
    */
@@ -197,5 +197,3 @@ const Navigation = () => {
     </EuiFlexGroup>
   );
 };
-
-export default Navigation;

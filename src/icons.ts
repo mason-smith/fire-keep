@@ -6,6 +6,7 @@ import { icon as AppLens } from '@elastic/eui/es/components/icon/assets/app_lens
 import { icon as ArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
 import { icon as ArrowRight } from '@elastic/eui/es/components/icon/assets/arrow_right';
 import { icon as ArrowUp } from '@elastic/eui/es/components/icon/assets/arrow_up';
+import { icon as Calendar } from '@elastic/eui/es/components/icon/assets/calendar';
 import { icon as Check } from '@elastic/eui/es/components/icon/assets/check';
 import { icon as Cheer } from '@elastic/eui/es/components/icon/assets/cheer';
 import { icon as Cross } from '@elastic/eui/es/components/icon/assets/cross';
@@ -36,6 +37,7 @@ export const iconComponentCache = () =>
     arrowDown: ArrowDown,
     arrowRight: ArrowRight,
     arrowUp: ArrowUp,
+    calendar: Calendar,
     check: Check,
     cheer: Cheer,
     cross: Cross,

@@ -3,7 +3,7 @@ import { EuiSpacer } from '@elastic/eui';
 
 // Local Dependencies
 // Components
-import Container from 'src/components/Container';
+import { Container } from 'src/components/Container';
 import { TaskCreator } from 'src/features/Tasks/components/TaskCreator';
 import { TaskList } from 'src/features/Tasks/components/TaskList';
 import { TaskStatusViewSelect } from './components/TaskStatusViewSelect';

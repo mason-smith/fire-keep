@@ -56,7 +56,6 @@ declare module '*.png' {
   export default ref;
 }
 
-/* CUSTOM: ADD YOUR OWN HERE */
 declare module '@elastic/eui/es/components/icon/icon';
 
 declare module '@elastic/eui/es/components/icon/assets/apps';
@@ -65,6 +64,7 @@ declare module '@elastic/eui/es/components/icon/assets/app_dashboard';
 declare module '@elastic/eui/es/components/icon/assets/arrow_down';
 declare module '@elastic/eui/es/components/icon/assets/arrow_right';
 declare module '@elastic/eui/es/components/icon/assets/arrow_up';
+declare module '@elastic/eui/es/components/icon/assets/calendar';
 declare module '@elastic/eui/es/components/icon/assets/check';
 declare module '@elastic/eui/es/components/icon/assets/cross';
 declare module '@elastic/eui/es/components/icon/assets/documentEdit';
