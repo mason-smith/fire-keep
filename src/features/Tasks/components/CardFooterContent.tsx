@@ -11,8 +11,10 @@ import {
 
 // Local Dependencies
 import { TaskItemProps } from './types';
+import { useDeleteTaskMutation } from '../tasksService';
 
 export const CardFooterContent = ({ task }: TaskItemProps) => {
+  const [deleteTask] = useDeleteTaskMutation();
   return (
     <EuiFlexGroup justifyContent="spaceBetween">
       <EuiFlexItem grow={false}>
