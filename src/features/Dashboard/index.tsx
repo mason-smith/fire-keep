@@ -15,7 +15,9 @@ const Dashboard = () => {
     <Container>
       <div className="flex flex-col mt-4 items-center w-full min-h-screen">
         <TaskCreator />
-        <TaskList authorId={user?.uid} />
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <TaskList authorId={user?.uid} />
+        </div>
       </div>
     </Container>
   );

@@ -53,6 +53,16 @@ export const tasksApi = createApi({
       }),
       invalidates: [{ type: 'Task', id: 'LIST' }],
     }),
+    deleteTask: builder.mutation<{ success: boolean; id: string }, string>({
+      query(id) {
+        return {
+          url: `/${id}`,
+          method: 'DELETE',
+        };
+      },
+      // Invalidates all queries that subscribe to this Post `id` only.
+      invalidates: (_, id) => [{ type: 'Task', id }],
+    }),
   }),
 });
 
@@ -63,4 +73,5 @@ export const {
   useFetchTaskQuery,
   useCreateTaskMutation,
   useUpdateTaskMutation,
+  useDeleteTaskMutation,
 } = tasksApi;
