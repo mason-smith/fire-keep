@@ -17,6 +17,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIRE_KEEP }}'
           channelId: live
-          projectId: keep.client
+          projectId: fire-keep
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
