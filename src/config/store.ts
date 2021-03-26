@@ -8,6 +8,7 @@ import {
 
 // Holidays
 import { tasksApi } from 'src/features/Tasks/tasksService';
+import tasksReducer from 'src/features/Tasks/tasksSlice';
 
 // Create an array of middlewares
 // @ts-ignore
@@ -38,6 +39,7 @@ export const store = configureStore({
   reducer: {
     // Holidays
     [tasksApi.reducerPath]: tasksApi.reducer,
+    tasks: tasksReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

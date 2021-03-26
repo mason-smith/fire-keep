@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // Local Dependencies
-import { useFetchTasksForUserQuery } from '../tasksService';
-import { TaskListProps } from '../types';
+import { firebaseAuth } from 'src/config/firebase.config';
 import { TaskListItem } from './TaskListItem';
+import { useFetchTasksForUserQuery } from '../tasksService';
+import { selectTaskListView } from '../tasksSelectors';
 
-export const TaskList = (props: TaskListProps) => {
-  const { authorId = '' } = props;
+export const TaskList = () => {
+  // Global State
+  const [user] = useAuthState(firebaseAuth);
+  const view = useSelector(selectTaskListView);
   // Local State
   const [pageIndex] = useState(0);
   const [pageSize] = useState(10);
@@ -22,7 +26,8 @@ export const TaskList = (props: TaskListProps) => {
   } = useFetchTasksForUserQuery({
     limit: pageSize,
     offset: pageIndex,
-    authorId,
+    view,
+    authorId: user?.uid || '',
   });
 
   const { results, total } = data;

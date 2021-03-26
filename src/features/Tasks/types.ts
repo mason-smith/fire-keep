@@ -18,9 +18,8 @@ export type TasksResponse = {
   total: number;
 };
 
-/**
- * Component Prop Types
- */
-export type TaskListProps = {
-  authorId?: string;
+export type TaskListViewType = 'all' | 'active' | 'completed';
+
+export type TasksState = {
+  view: TaskListViewType;
 };

@@ -115,7 +115,7 @@ export const TaskCreator = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full md:w-2/3 lg:w-1/3 mb-4">
+    <form onSubmit={handleSubmit} className="w-full md:w-2/3 lg:w-1/3">
       {/* <EuiButton onClick={showFlyout} onFocus={showFlyout}>Show flyout</EuiButton> */}
       <EuiFieldText
         value={task.title}

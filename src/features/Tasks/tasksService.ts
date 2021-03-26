@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@rtk-incubator/rtk-query';
 
 // Local Dependencies
-import { Task, TasksResponse } from './types';
+import { Task, TaskListViewType, TasksResponse } from './types';
 
 // Define a service using a base URL and expected endpoints
 export const tasksApi = createApi({
@@ -14,13 +14,18 @@ export const tasksApi = createApi({
      */
     fetchTasksForUser: builder.query<
       TasksResponse,
-      { limit: number; offset: number; authorId: string }
+      {
+        limit: number;
+        offset: number;
+        view: TaskListViewType;
+        authorId: string;
+      }
     >({
-      query: ({ limit = 10, offset = 0, authorId = '' }) => {
+      query: ({ limit = 10, offset = 0, view = 'all', authorId = '' }) => {
         return {
           url: `/`,
           // body: { authorId },
-          params: { limit, offset, authorId },
+          params: { limit, offset, view, authorId },
         };
       },
       provides: (result) => [
