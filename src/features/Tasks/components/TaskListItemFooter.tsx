@@ -11,10 +11,10 @@ import {
 } from '@elastic/eui';
 
 // Local Dependencies
-import { TaskItemProps } from './types';
+import { TaskListItemProps } from './types';
 import { useDeleteTaskMutation, useUpdateTaskMutation } from '../tasksService';
 
-export const TaskItemFooter = ({ task }: TaskItemProps) => {
+export const TaskListItemFooter = ({ task }: TaskListItemProps) => {
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
   return (
@@ -35,7 +35,7 @@ export const TaskItemFooter = ({ task }: TaskItemProps) => {
         <EuiCheckbox
           className="ml-6"
           id={`task_completed_${task?.id}`}
-          label="Complete"
+          label="Mark complete"
           checked={task?.completed || false}
           onChange={(e) =>
             updateTask({
@@ -46,9 +46,17 @@ export const TaskItemFooter = ({ task }: TaskItemProps) => {
         />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <Link to={`tasks/${task.id}`}>
-          <EuiButton size="s">View task</EuiButton>
-        </Link>
+        {/* <EuiButton size="s">View task</EuiButton> */}
+        <EuiToolTip position="top" content="Edit task">
+          <Link to={`tasks/${task.id}`}>
+            <EuiButtonIcon
+              size="s"
+              color="success"
+              iconType="documentEdit"
+              aria-label="Delete"
+            />
+          </Link>
+        </EuiToolTip>
       </EuiFlexItem>
     </EuiFlexGroup>
   );

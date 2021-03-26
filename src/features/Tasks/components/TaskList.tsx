@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Local Dependencies
 import { useFetchTasksForUserQuery } from '../tasksService';
 import { TaskListProps } from '../types';
-import { TaskItem } from './TaskItem';
+import { TaskListItem } from './TaskListItem';
 
 export const TaskList = (props: TaskListProps) => {
   const { authorId = '' } = props;
@@ -34,7 +34,7 @@ export const TaskList = (props: TaskListProps) => {
   return (
     <>
       {results.map((result) => {
-        return <TaskItem key={result.id} task={result} />;
+        return <TaskListItem key={result.id} task={result} />;
       })}
     </>
   );

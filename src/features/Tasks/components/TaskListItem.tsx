@@ -3,17 +3,17 @@ import { EuiCard } from '@elastic/eui';
 
 // Local Dependencies
 import { truncate } from 'src/util/truncate';
-import { TaskItemProps } from './types';
-import { TaskItemFooter } from './TaskItemFooter';
+import { TaskListItemProps } from './types';
+import { TaskListItemFooter } from './TaskListItemFooter';
 
-export const TaskItem = (props: TaskItemProps) => {
+export const TaskListItem = (props: TaskListItemProps) => {
   const { task } = props;
   return (
     <EuiCard
       textAlign="left"
       title={task.title}
       description={truncate(task.description)}
-      footer={<TaskItemFooter task={task} />}
+      footer={<TaskListItemFooter task={task} />}
     />
   );
 };

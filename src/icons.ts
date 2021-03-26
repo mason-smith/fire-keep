@@ -9,6 +9,7 @@ import { icon as ArrowUp } from '@elastic/eui/es/components/icon/assets/arrow_up
 import { icon as Check } from '@elastic/eui/es/components/icon/assets/check';
 import { icon as Cheer } from '@elastic/eui/es/components/icon/assets/cheer';
 import { icon as Cross } from '@elastic/eui/es/components/icon/assets/cross';
+import { icon as DocumentEdit } from '@elastic/eui/es/components/icon/assets/documentEdit';
 import { icon as Dot } from '@elastic/eui/es/components/icon/assets/dot';
 import { icon as EyeClosed } from '@elastic/eui/es/components/icon/assets/eye_closed';
 import { icon as Eye } from '@elastic/eui/es/components/icon/assets/eye';
@@ -38,6 +39,7 @@ export const iconComponentCache = () =>
     check: Check,
     cheer: Cheer,
     cross: Cross,
+    documentEdit: DocumentEdit,
     dot: Dot,
     empty: Empty,
     eye: Eye,

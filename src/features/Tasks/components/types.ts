@@ -1,5 +1,5 @@
 import { Task } from '../types';
 
-export type TaskItemProps = {
+export type TaskListItemProps = {
   task: Task;
 };
