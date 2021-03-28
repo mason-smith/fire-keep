@@ -1,4 +1,5 @@
-import { useState, FormEvent, Fragment, ChangeEvent } from 'react';
+import { useState, FormEvent, Fragment, ChangeEvent, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import moment, { Moment } from 'moment';
 
@@ -28,9 +29,14 @@ import {
 
 // Local Dependencies
 import { firebaseAuth } from 'src/config/firebase.config';
-import { useCreateTaskMutation } from '../tasksService';
+import {
+  useCreateTaskMutation,
+  useUpdateTaskMutation,
+  useDeleteTaskMutation,
+} from '../tasksService';
 import { Task } from '../types';
 import { initialTaskValue } from '../utils/initialTaskValue';
+import { TaskCreatorProps } from './types';
 
 const superSelectOptions = [
   {
@@ -77,11 +83,20 @@ const superSelectOptions = [
   },
 ];
 
-export const TaskCreator = () => {
-  // Task state
+export const TaskCreator = (props: TaskCreatorProps) => {
+  const { task: selectedTask } = props;
+  // Global utils
+  const history = useHistory();
   const [user] = useAuthState(firebaseAuth);
+
+  // tasksService utils
   const [addTask, { isLoading }] = useCreateTaskMutation();
+  const [updateTask] = useUpdateTaskMutation();
+  const [deleteTask] = useDeleteTaskMutation();
+
+  // Local Task state
   const [task, setTask] = useState<Partial<Task>>(initialTaskValue);
+  const [error, setError] = useState<string[] | null>(null);
   // Flyout state
   const [hasFocus, setHasFocus] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -90,6 +105,7 @@ export const TaskCreator = () => {
   const closeFlyout = () => {
     setIsFlyoutVisible(false);
     setHasFocus(false);
+    history.push('/tasks');
   };
 
   const openFlyout = () => {
@@ -97,18 +113,32 @@ export const TaskCreator = () => {
     setHasFocus(true);
   };
 
+  useEffect(() => {
+    if (selectedTask?.id) {
+      setTask(selectedTask);
+      openFlyout();
+    }
+    return () => {
+      setTask(initialTaskValue);
+    };
+  }, [selectedTask]);
+
   const onSuperSelectChange = (value: any) => {
     setSuperSelectValue(value);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // Post task to the database
-    addTask({
-      ...task,
-      authorId: user?.uid,
-    }).unwrap();
+    if (selectedTask?.id) {
+      await updateTask(task as Task).unwrap();
+    } else {
+      // Post task to the database
+      await addTask({
+        ...task,
+        authorId: user?.uid,
+      }).unwrap();
+    }
 
     // Reset form state
     closeFlyout();
@@ -131,13 +161,22 @@ export const TaskCreator = () => {
     });
   };
 
+  const handleDeleteTask = async () => {
+    try {
+      deleteTask(task?.id || '').unwrap();
+      history.push('/');
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <EuiFieldText
         value={task.title}
         onChange={(e) => setTask({ ...task, title: e.target.value })}
         onFocus={openFlyout}
-        placeholder="Task title"
+        placeholder="New task title"
         type="text"
         id="taskTitleInput"
         aria-label="Task title"
@@ -234,7 +273,7 @@ export const TaskCreator = () => {
                 onChange={(date) =>
                   handleChangeDate(date as Moment, 'dateComplete')
                 }
-                minDate={moment(task.dateStart)}
+                minDate={task.dateStart ? moment(task.dateStart) : undefined}
                 fullWidth
               />
             </EuiFormRow>
@@ -268,20 +307,43 @@ export const TaskCreator = () => {
               flush="left"
               type="button"
               size="s"
-              color="danger"
             >
               Close
             </EuiButtonEmpty>
 
-            <EuiButtonEmpty
-              iconType="save"
-              flush="left"
-              type="submit"
-              size="s"
-              color="success"
-            >
-              Save
-            </EuiButtonEmpty>
+            {selectedTask?.id ? (
+              <>
+                <EuiButtonEmpty
+                  iconType="trash"
+                  flush="left"
+                  type="button"
+                  size="s"
+                  color="danger"
+                  onClick={handleDeleteTask}
+                >
+                  Delete
+                </EuiButtonEmpty>
+                <EuiButtonEmpty
+                  iconType="refresh"
+                  flush="left"
+                  type="submit"
+                  size="s"
+                  color="success"
+                >
+                  Update
+                </EuiButtonEmpty>
+              </>
+            ) : (
+              <EuiButtonEmpty
+                iconType="save"
+                flush="left"
+                type="submit"
+                size="s"
+                color="success"
+              >
+                Save
+              </EuiButtonEmpty>
+            )}
           </EuiFlyoutFooter>
         </EuiFlyout>
       )}
