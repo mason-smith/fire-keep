@@ -11,7 +11,7 @@ import {
 } from '@elastic/eui';
 
 // Local Dependencies
-import Container from 'src/components/Container';
+import { Container } from 'src/components/Container';
 import {
   useFetchTaskQuery,
   useUpdateTaskMutation,

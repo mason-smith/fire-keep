@@ -10,7 +10,6 @@ const RegisterPage = lazy(() => import('../features/Auth/Register'));
 
 const DashboardPage = lazy(() => import('../features/Dashboard'));
 const TasksPage = lazy(() => import('../features/Tasks'));
-const TaskPage = lazy(() => import('../features/Tasks/Task'));
 
 export const routes: Route[] = [
   {
@@ -36,8 +35,8 @@ export const routes: Route[] = [
     ariaLabel: 'view my tasks',
   },
   {
-    component: <TaskPage />,
-    path: '/tasks/:id',
+    component: <TasksPage />,
+    path: '/tasks/:taskId',
     label: 'Task',
     accessLevel: ['Employee'],
     private: true,

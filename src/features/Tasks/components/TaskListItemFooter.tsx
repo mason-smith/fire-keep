@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 // @elastic/eui dependencies
 import {
-  EuiButton,
   EuiCheckbox,
   EuiFlexGroup,
   EuiFlexItem,

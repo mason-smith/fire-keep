@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import cuid from 'cuid';
 
 // Local Dependencies
-import Navigation from 'src/components/Navigation';
+import { Navigation } from 'src/components/Navigation';
 import { firebaseAuth } from 'src/config/firebase.config';
 import { UseAuthStateReturn } from 'src/config/firebaseTypes';
 import { PrivateRoute } from './PrivateRoute';

@@ -7,7 +7,7 @@ import { Task, TaskListViewType, TasksResponse } from './types';
 export const tasksApi = createApi({
   reducerPath: 'tasksApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8081/tasks' }),
-  entityTypes: ['Task'],
+  entityTypes: ['Tasks', 'Task'],
   endpoints: (builder) => ({
     /**
      * fetch all tasks for an author
@@ -30,7 +30,7 @@ export const tasksApi = createApi({
       },
       provides: (result) => [
         ...result.results.map(({ id }) => ({ type: 'Task', id } as const)),
-        { type: 'Task', id: 'LIST' },
+        { type: 'Tasks', id: 'LIST' },
       ],
     }),
     /**
@@ -38,6 +38,7 @@ export const tasksApi = createApi({
      */
     fetchTask: builder.query<Task, { taskId: string }>({
       query: ({ taskId }: { taskId: string }) => `/${taskId}`,
+      provides: (task) => [{ type: 'Task', id: task.id }],
     }),
     /**
      * Create new task
@@ -48,7 +49,7 @@ export const tasksApi = createApi({
         method: 'POST',
         body,
       }),
-      invalidates: [{ type: 'Task', id: 'LIST' }],
+      invalidates: [{ type: 'Tasks', id: 'LIST' }],
     }),
     updateTask: builder.mutation<Task, Task>({
       query: (body) => ({
@@ -57,7 +58,7 @@ export const tasksApi = createApi({
         body,
       }),
       invalidates: (_, body) => [
-        { type: 'Task', id: 'LIST' },
+        { type: 'Tasks', id: 'LIST' },
         { type: 'Task', id: body.id },
       ],
     }),
@@ -69,7 +70,10 @@ export const tasksApi = createApi({
         };
       },
       // Invalidates all queries that subscribe to this Post `id` only.
-      invalidates: (_, id) => [{ type: 'Task', id }],
+      invalidates: (_, id) => [
+        { type: 'Tasks', id: 'LIST' },
+        { type: 'Task', id: id },
+      ],
     }),
   }),
 });

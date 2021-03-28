@@ -56,7 +56,6 @@ declare module '*.png' {
   export default ref;
 }
 
-/* CUSTOM: ADD YOUR OWN HERE */
 declare module '@elastic/eui/es/components/icon/icon';
 
 declare module '@elastic/eui/es/components/icon/assets/apps';
@@ -65,7 +64,9 @@ declare module '@elastic/eui/es/components/icon/assets/app_dashboard';
 declare module '@elastic/eui/es/components/icon/assets/arrow_down';
 declare module '@elastic/eui/es/components/icon/assets/arrow_right';
 declare module '@elastic/eui/es/components/icon/assets/arrow_up';
+declare module '@elastic/eui/es/components/icon/assets/calendar';
 declare module '@elastic/eui/es/components/icon/assets/check';
+declare module '@elastic/eui/es/components/icon/assets/cheer';
 declare module '@elastic/eui/es/components/icon/assets/cross';
 declare module '@elastic/eui/es/components/icon/assets/documentEdit';
 declare module '@elastic/eui/es/components/icon/assets/dot';
@@ -82,7 +83,8 @@ declare module '@elastic/eui/es/components/icon/assets/logo_kibana';
 declare module '@elastic/eui/es/components/icon/assets/logo_google_g';
 declare module '@elastic/eui/es/components/icon/assets/logo_security';
 declare module '@elastic/eui/es/components/icon/assets/menu';
-declare module '@elastic/eui/es/components/icon/assets/cheer';
+declare module '@elastic/eui/es/components/icon/assets/refresh';
+declare module '@elastic/eui/es/components/icon/assets/save';
 declare module '@elastic/eui/es/components/icon/assets/search';
 declare module '@elastic/eui/es/components/icon/assets/training';
 declare module '@elastic/eui/es/components/icon/assets/trash';
