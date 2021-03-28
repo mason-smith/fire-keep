@@ -6,6 +6,7 @@ import { icon as AppLens } from '@elastic/eui/es/components/icon/assets/app_lens
 import { icon as ArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
 import { icon as ArrowRight } from '@elastic/eui/es/components/icon/assets/arrow_right';
 import { icon as ArrowUp } from '@elastic/eui/es/components/icon/assets/arrow_up';
+import { icon as Calendar } from '@elastic/eui/es/components/icon/assets/calendar';
 import { icon as Check } from '@elastic/eui/es/components/icon/assets/check';
 import { icon as Cheer } from '@elastic/eui/es/components/icon/assets/cheer';
 import { icon as Cross } from '@elastic/eui/es/components/icon/assets/cross';
@@ -23,6 +24,8 @@ import { icon as LogoKibana } from '@elastic/eui/es/components/icon/assets/logo_
 import { icon as LogoSecurity } from '@elastic/eui/es/components/icon/assets/logo_security';
 import { icon as LogoGoogleG } from '@elastic/eui/es/components/icon/assets/logo_google_g';
 import { icon as Menu } from '@elastic/eui/es/components/icon/assets/menu';
+import { icon as Refresh } from '@elastic/eui/es/components/icon/assets/refresh';
+import { icon as Save } from '@elastic/eui/es/components/icon/assets/save';
 import { icon as Search } from '@elastic/eui/es/components/icon/assets/search';
 import { icon as Training } from '@elastic/eui/es/components/icon/assets/training';
 import { icon as Trash } from '@elastic/eui/es/components/icon/assets/trash';
@@ -36,6 +39,7 @@ export const iconComponentCache = () =>
     arrowDown: ArrowDown,
     arrowRight: ArrowRight,
     arrowUp: ArrowUp,
+    calendar: Calendar,
     check: Check,
     cheer: Cheer,
     cross: Cross,
@@ -53,6 +57,8 @@ export const iconComponentCache = () =>
     logoSecurity: LogoSecurity,
     logoGoogleG: LogoGoogleG,
     menu: Menu,
+    refresh: Refresh,
+    save: Save,
     search: Search,
     training: Training,
     trash: Trash,

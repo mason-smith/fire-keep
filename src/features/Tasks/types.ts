@@ -8,7 +8,7 @@ export type Task = {
   dateUpdated: string;
   description: string;
   due: string | null;
-  dueReminder: boolean | null;
+  dueReminder: string | null;
   idCategory: string;
   title: string;
 };

@@ -33,7 +33,11 @@ export const TaskList = () => {
   const { results, total } = data;
 
   if (!results.length) {
-    return <p className="col-span-full text-center">Create your first task</p>;
+    return (
+      <p className="col-span-full text-center">
+        Select the input above to create a new task
+      </p>
+    );
   }
 
   return (
