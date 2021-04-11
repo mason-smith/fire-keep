@@ -2,6 +2,9 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+// Local Dependencies
+import { FirebaseUser } from './firebaseTypes';
+
 const firebaseConfig = {
   apiKey: import.meta.env.SNOWPACK_PUBLIC_API_KEY,
   authDomain: import.meta.env.SNOWPACK_PUBLIC_AUTH_DOMAIN,
@@ -53,6 +56,9 @@ export const createUserProfileDocument = async (
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => firebaseAuth.signInWithPopup(provider);
+export const signInWithGoogle = async () =>
+  await firebaseAuth
+    .signInWithPopup(provider)
+    .then((user) => createUserProfileDocument(user.user as FirebaseUser));
 
 export default firebase;
