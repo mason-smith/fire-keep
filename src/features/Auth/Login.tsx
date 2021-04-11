@@ -1,5 +1,5 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 // @elastic/eui dependencies
@@ -11,10 +11,7 @@ import { UseAuthStateReturn } from 'src/config/firebaseTypes';
 import { AuthError } from './types';
 
 const LoginPage = () => {
-  const history = useHistory();
-  const [user, firebaseIsLoading]: UseAuthStateReturn = useAuthState(
-    firebaseAuth,
-  );
+  const [, firebaseIsLoading]: UseAuthStateReturn = useAuthState(firebaseAuth);
 
   // Local State
   const [email, setEmail] = useState('');
@@ -22,20 +19,12 @@ const LoginPage = () => {
   const [error, setError] = useState<AuthError | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (user) {
-      history.push('/');
-    }
-  }, [user]);
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
     try {
       await firebaseAuth.signInWithEmailAndPassword(email, password);
-      setLoading(false);
-      history.push('/');
     } catch (err) {
       setLoading(false);
       setError(err);

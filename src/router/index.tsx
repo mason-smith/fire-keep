@@ -1,41 +1,21 @@
-import { Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import cuid from 'cuid';
+
+// @elastic/eui dependencies
+import { EuiProgress } from '@elastic/eui';
 
 // Local Dependencies
-import { Navigation } from 'src/components/Navigation';
 import { firebaseAuth } from 'src/config/firebase.config';
 import { UseAuthStateReturn } from 'src/config/firebaseTypes';
-import { PrivateRoute } from './PrivateRoute';
-import { routes } from './routes';
+
+const PrivateApp = lazy(() => import('./PrivateApp'));
+const PublicApp = lazy(() => import('./PublicApp'));
 
 export const AppRouter = () => {
   const [user]: UseAuthStateReturn = useAuthState(firebaseAuth);
   return (
-    <Router>
-      {user ? (
-        <>
-          <Navigation />
-          <div className="mb-10" />
-        </>
-      ) : null}
-
-      <Switch>
-        <Suspense fallback={null}>
-          {routes.map((route) => {
-            return route.private ? (
-              <PrivateRoute key={cuid()} exact path={route.path}>
-                {route.component}
-              </PrivateRoute>
-            ) : (
-              <Route key={cuid()} exact path={route.path}>
-                {route.component}
-              </Route>
-            );
-          })}
-        </Suspense>
-      </Switch>
-    </Router>
+    <Suspense fallback={<EuiProgress size="xs" color="accent" />}>
+      {user ? <PrivateApp /> : <PublicApp />}
+    </Suspense>
   );
 };
