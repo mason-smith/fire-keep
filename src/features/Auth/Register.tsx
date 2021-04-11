@@ -6,8 +6,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { EuiButton, EuiFieldText, EuiFieldPassword } from '@elastic/eui';
 
 // Local Dependencies
-import { firebaseAuth, signInWithGoogle } from 'src/config/firebase.config';
-import { UseAuthStateReturn } from 'src/config/firebaseTypes';
+import {
+  createUserProfileDocument,
+  firebaseAuth,
+  signInWithGoogle,
+} from 'src/config/firebase.config';
+import { FirebaseUser, UseAuthStateReturn } from 'src/config/firebaseTypes';
 import { AuthError } from './types';
 
 const Register = () => {
@@ -34,7 +38,11 @@ const Register = () => {
     setError(null);
     setLoading(true);
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(email, password);
+      const { user } = await firebaseAuth.createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      await createUserProfileDocument(user as FirebaseUser);
       setLoading(false);
       history.push('/');
     } catch (err) {
