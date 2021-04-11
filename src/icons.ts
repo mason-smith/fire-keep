@@ -24,7 +24,9 @@ import { icon as LogoKibana } from '@elastic/eui/es/components/icon/assets/logo_
 import { icon as LogoSecurity } from '@elastic/eui/es/components/icon/assets/logo_security';
 import { icon as LogoGoogleG } from '@elastic/eui/es/components/icon/assets/logo_google_g';
 import { icon as Menu } from '@elastic/eui/es/components/icon/assets/menu';
+import { icon as MinusInCircle } from '@elastic/eui/es/components/icon/assets/minus_in_circle';
 import { icon as Refresh } from '@elastic/eui/es/components/icon/assets/refresh';
+import { icon as ReturnKey } from '@elastic/eui/es/components/icon/assets/return_key';
 import { icon as Save } from '@elastic/eui/es/components/icon/assets/save';
 import { icon as Search } from '@elastic/eui/es/components/icon/assets/search';
 import { icon as Training } from '@elastic/eui/es/components/icon/assets/training';
@@ -57,7 +59,9 @@ export const iconComponentCache = () =>
     logoSecurity: LogoSecurity,
     logoGoogleG: LogoGoogleG,
     menu: Menu,
+    minusInCircle: MinusInCircle,
     refresh: Refresh,
+    returnKey: ReturnKey,
     save: Save,
     search: Search,
     training: Training,

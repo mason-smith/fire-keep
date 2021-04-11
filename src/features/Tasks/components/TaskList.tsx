@@ -17,8 +17,8 @@ export const TaskList = () => {
   const [pageSize] = useState(10);
 
   /**
-   * fetch list of holidays
-   * from employerHolidaySlice
+   * fetch list of tasks
+   * from tasksService
    */
   const {
     data = { results: [], total: 0 },
@@ -29,7 +29,6 @@ export const TaskList = () => {
     view,
     authorId: user?.uid || '',
   });
-
   const { results, total } = data;
 
   if (!results.length) {

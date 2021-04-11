@@ -56,6 +56,9 @@ declare module '*.png' {
   export default ref;
 }
 
+declare module '@elastic/eui/lib/services';
+
+// ICONS
 declare module '@elastic/eui/es/components/icon/icon';
 
 declare module '@elastic/eui/es/components/icon/assets/apps';
@@ -83,7 +86,9 @@ declare module '@elastic/eui/es/components/icon/assets/logo_kibana';
 declare module '@elastic/eui/es/components/icon/assets/logo_google_g';
 declare module '@elastic/eui/es/components/icon/assets/logo_security';
 declare module '@elastic/eui/es/components/icon/assets/menu';
+declare module '@elastic/eui/es/components/icon/assets/minus_in_circle';
 declare module '@elastic/eui/es/components/icon/assets/refresh';
+declare module '@elastic/eui/es/components/icon/assets/return_key';
 declare module '@elastic/eui/es/components/icon/assets/save';
 declare module '@elastic/eui/es/components/icon/assets/search';
 declare module '@elastic/eui/es/components/icon/assets/training';

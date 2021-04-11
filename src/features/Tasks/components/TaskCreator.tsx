@@ -5,9 +5,7 @@ import moment, { Moment } from 'moment';
 
 // @elastic/eui dependencies
 import {
-  EuiButton,
   EuiButtonEmpty,
-  EuiButtonIcon,
   EuiCheckbox,
   EuiDatePicker,
   EuiFlexGroup,
@@ -21,13 +19,12 @@ import {
   EuiSpacer,
   EuiText,
   EuiTitle,
-  EuiSuperSelect,
   EuiTextArea,
   EuiFieldText,
-  EuiToolTip,
 } from '@elastic/eui';
 
 // Local Dependencies
+import { CategoryComboBox } from 'src/features/Categories/components/CategoryComboBox';
 import { firebaseAuth } from 'src/config/firebase.config';
 import {
   useCreateTaskMutation,
@@ -37,51 +34,6 @@ import {
 import { Task } from '../types';
 import { initialTaskValue } from '../utils/initialTaskValue';
 import { TaskCreatorProps } from './types';
-
-const superSelectOptions = [
-  {
-    value: 'option_one',
-    inputDisplay: 'Option one',
-    dropdownDisplay: (
-      <Fragment>
-        <strong>Option one</strong>
-        <EuiText size="s" color="subdued">
-          <p className="euiTextColor--subdued">
-            Has a short description giving more detail to the option.
-          </p>
-        </EuiText>
-      </Fragment>
-    ),
-  },
-  {
-    value: 'option_two',
-    inputDisplay: 'Option two',
-    dropdownDisplay: (
-      <Fragment>
-        <strong>Option two</strong>
-        <EuiText size="s" color="subdued">
-          <p className="euiTextColor--subdued">
-            Has a short description giving more detail to the option.
-          </p>
-        </EuiText>
-      </Fragment>
-    ),
-  },
-  {
-    value: 'option_three',
-    inputDisplay: 'Option three',
-    dropdownDisplay: (
-      <Fragment>
-        <strong>Option three</strong>
-        <EuiText size="s" color="subdued">
-          <p className="euiTextColor--subdued">
-            Has a short description giving more detail to the option.
-          </p>
-        </EuiText>
-      </Fragment>
-    ),
-  },
-];
 
 export const TaskCreator = (props: TaskCreatorProps) => {
   const { task: selectedTask } = props;
@@ -100,7 +52,6 @@ export const TaskCreator = (props: TaskCreatorProps) => {
   // Flyout state
   const [hasFocus, setHasFocus] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
 
   const closeFlyout = () => {
     setIsFlyoutVisible(false);
@@ -122,10 +73,6 @@ export const TaskCreator = (props: TaskCreatorProps) => {
       setTask(initialTaskValue);
     };
   }, [selectedTask]);
-
-  const onSuperSelectChange = (value: any) => {
-    setSuperSelectValue(value);
-  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -230,28 +177,19 @@ export const TaskCreator = (props: TaskCreatorProps) => {
 
             <EuiHorizontalRule />
             {/* completed toggle and category select */}
-            <EuiFlexGroup alignItems="center">
-              <EuiFlexItem>
-                <EuiCheckbox
-                  id={`task_completed_${task.title}_checkbox`}
-                  label="Completed"
-                  checked={task.completed}
-                  onChange={(e) => handleToggleComplete(e)}
-                />
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <EuiFormRow label="Select a category">
-                  <EuiSuperSelect
-                    options={superSelectOptions}
-                    valueOfSelected={superSelectvalue}
-                    onChange={(value) => onSuperSelectChange(value)}
-                    itemLayoutAlign="top"
-                    hasDividers
-                    fullWidth
-                  />
-                </EuiFormRow>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiFormRow>
+              <EuiCheckbox
+                id={`task_completed_${task.title}_checkbox`}
+                label="Completed"
+                checked={task.completed}
+                onChange={(e) => handleToggleComplete(e)}
+              />
+            </EuiFormRow>
+            <EuiFormRow>
+              <EuiFormRow label="Select a category">
+                <CategoryComboBox />
+              </EuiFormRow>
+            </EuiFormRow>
             {/* dateStart and dateComplete selects */}
             <EuiFormRow label="Select a start date" fullWidth>
               <EuiDatePicker

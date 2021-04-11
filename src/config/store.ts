@@ -6,9 +6,11 @@ import {
   Action,
 } from '@reduxjs/toolkit';
 
-// Holidays
+// Tasks
 import { tasksApi } from 'src/features/Tasks/tasksService';
 import tasksReducer from 'src/features/Tasks/tasksSlice';
+// Categories
+import { categoriesApi } from 'src/features/Categories/categoriesService';
 
 // Create an array of middlewares
 // @ts-ignore
@@ -37,13 +39,18 @@ if (import.meta.env.MODE === `development`) {
 
 export const store = configureStore({
   reducer: {
-    // Holidays
+    // Tasks
     [tasksApi.reducerPath]: tasksApi.reducer,
     tasks: tasksReducer,
+    // Categories
+    [categoriesApi.reducerPath]: categoriesApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
-  middleware: middleware.concat(tasksApi.middleware),
+  middleware: middleware.concat([
+    tasksApi.middleware,
+    categoriesApi.middleware,
+  ]),
   devTools: import.meta.env.MODE !== 'production',
 });
 
