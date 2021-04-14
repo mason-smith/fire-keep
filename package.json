@@ -19,6 +19,7 @@
     "react-firebase-hooks": "^3.0.3",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
+    "recoil": "^0.2.0",
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {

@@ -50,6 +50,8 @@ export const CategoryComboBox = () => {
     setSelected(selectedOptions);
   };
 
+  console.log('options :>> ', options);
+
   const onSearchChange = useCallback((searchValue) => {
     setLoading(true);
     setOptions([]);
