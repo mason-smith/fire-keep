@@ -9,7 +9,7 @@ export type Task = {
   description: string;
   due: string | null;
   dueReminder: string | null;
-  idCategory: string;
+  idCategories: string;
   title: string;
 };
 
